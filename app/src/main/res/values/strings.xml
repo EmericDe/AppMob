@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Smart EDT</string>
+    <string name="emploie_du_temps">Emploi du temps</string>
+    <string name="param">Paramètres</string>
+    <string name="QR_code">QR</string>
+</resources>

@@ -1,0 +1,87 @@
+package com.example.appmobilev2;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class DataBaseManager extends SQLiteOpenHelper {
+
+    private static final String DATABASE_NAME = "Base";
+    private static final int DATABASE_VERSION = 1;
+
+    public DataBaseManager(Context context) {
+        super(context,DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        String strSQL = "CREATE TABLE T_Cours ("
+                + "   idCours integer primary key autoincrement,"
+                + "   prof String,"
+                + "   nomCours String,"
+                + "   location String,"
+                + "   heureDebutCours String,"
+                + "   heureFinCours String,"
+                + "   dateCours String"
+                + ")";
+        String strSQL2= "CREATE TABLE T_Lien ("
+                + "   idLien integer primary key autoincrement,"
+                + "   lien String"
+                + ")";
+        db.execSQL(strSQL);
+        db.execSQL(strSQL2);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+
+    public void insertCours(String prof, String nom, String loc, String heureDeb, String heureFin, String date) {
+        nom = nom.replace("'", "''");
+        String strSql = "insert into T_Cours (prof, nomCours,location,heureDebutCours,heureFinCours,dateCours) VALUES ('"
+                + prof + "', '" + nom + "', '" + loc + "', '" + heureDeb + "', '" + heureFin + "', '" + date + "')";
+        this.getWritableDatabase().execSQL(strSql);
+    }
+
+    public void insertLien(String lien) {
+        String strSql = "insert into T_Lien (lien) VALUES ('" + lien + "')";
+        this.getWritableDatabase().execSQL(strSql);
+    }
+
+    public void delete() {
+        String strSql = "DELETE FROM T_Cours";
+        String strSql2 = "DELETE FROM T_Lien";
+        this.getWritableDatabase().execSQL(strSql);
+        this.getWritableDatabase().execSQL(strSql2);
+    }
+
+    public ArrayList<Cours> getCours() {
+        ArrayList<Cours> cours = new ArrayList<>();
+
+        String strSql = "SELECT * FROM T_Cours";
+        Cursor cursor = this.getReadableDatabase().rawQuery(strSql, null);
+        cursor.moveToFirst();
+        while(! cursor.isAfterLast()) {
+            Cours cour = new Cours(cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6));
+            cours.add(cour);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return cours;
+    }
+
+    public boolean isEmpty() {
+        String strSql = "SELECT * FROM T_Lien";
+        Cursor cursor = this.getReadableDatabase().rawQuery(strSql, null);
+        cursor.moveToFirst();
+        if(cursor.getCount() == 0 || cursor == null) {
+            return true;
+        } else return false;
+    }
+}

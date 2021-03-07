@@ -1,0 +1,4 @@
+include ':biweek'
+include ':vinnie'
+include ':app'
+rootProject.name = "AppMobile V2"
