@@ -66,7 +66,6 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
             lireLien();
             createBD();
         }
-
         Calendar calendar = Calendar.getInstance();
         Date today = calendar.getTime();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
