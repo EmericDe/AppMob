@@ -122,6 +122,8 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
             e.printStackTrace();
         }
     }
+
+
     @Override
     public void onClick(View v) {
         switch(v.getId()){

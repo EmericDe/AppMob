@@ -43,7 +43,6 @@ public class SettingsActivity extends AppCompatActivity {
             scanQRCode = findPreference("SCANQRCODE");
             URLSYNC = findPreference("URLSYNC");
             URLSYNC.setText("");
-            db.delete();
             scanQRCode.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
@@ -56,7 +55,9 @@ public class SettingsActivity extends AppCompatActivity {
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     if(URLSYNC.getText() != null)
                         db.insertLien(newValue.toString());
-                    startActivity(new Intent(preference.getContext(), CalendarJour.class));
+                    Intent Calendar = new Intent(preference.getContext(), CalendarJour.class);
+                    Calendar.putExtra("LienEDT", newValue.toString());
+                    startActivity(Calendar);
                     return true;
                 }
             });
