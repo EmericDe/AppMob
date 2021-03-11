@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -81,10 +82,16 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
         listView.setAdapter(mAdapter);
         db.close();
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "Résultats ici", Toast.LENGTH_SHORT).show();
+            }
+        });
         btn_qr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent edtActivity = new Intent(getApplicationContext(), com.example.appmobilev2.EdtActivity.class);
+                Intent edtActivity = new Intent(v.getContext(), com.example.appmobilev2.EdtActivity.class);
                 startActivity(edtActivity);
                 finish();
             }
@@ -220,5 +227,8 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
         });
         return listeCoursDay;
     }
+
+
+
 
 }
