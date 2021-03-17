@@ -6,11 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <View android:id="@+id/divider"
-        android:background="@drawable/background_color"
+    <View
+        android:id="@+id/divider"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        tools:ignore="MissingConstraints" />
+        android:background="@drawable/background_color"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="60dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -30,15 +33,30 @@
         android:id="@+id/button_edt"
         android:layout_width="260dp"
         android:layout_height="75dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/background_btn"
         android:text="@string/emploie_du_temps"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_param"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.700" />
+        app:layout_constraintVertical_bias="0.165" />
+
+    <Button
+        android:id="@+id/button_rappels"
+        android:layout_width="260dp"
+        android:layout_height="75dp"
+        android:background="@drawable/background_btn"
+        android:text="@string/Rappels"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/button_param"
@@ -48,10 +66,11 @@
         android:text="@string/param"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/divider"
-        app:layout_constraintEnd_toEndOf="@+id/divider"
-        app:layout_constraintStart_toStartOf="@+id/divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.500" />
+        app:layout_constraintVertical_bias="0.759" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

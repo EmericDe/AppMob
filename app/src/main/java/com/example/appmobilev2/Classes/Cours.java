@@ -1,4 +1,4 @@
-package com.example.appmobilev2;
+package com.example.appmobilev2.Classes;
 
 public class Cours {
     private String nomProf;

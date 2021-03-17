@@ -1,4 +1,4 @@
-package com.example.appmobilev2;
+package com.example.appmobilev2.Rappels;
 
 public class Rappel {
     private String titre;

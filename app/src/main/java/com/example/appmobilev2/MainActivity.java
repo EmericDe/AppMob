@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -13,15 +12,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
+import com.example.appmobilev2.Classes.CalendarJour;
+import com.example.appmobilev2.Parametres.SettingsActivity;
+import com.example.appmobilev2.Rappels.Rappels_Affichage;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView txt;
-    private Button btn, btn_param;
+    private Button btn, btn_param, btn_rappels;
 
     @SuppressLint("WrongThread")
     @Override
@@ -38,20 +36,27 @@ public class MainActivity extends AppCompatActivity {
 
         this.txt = findViewById(R.id.textView);
         this.btn = findViewById(R.id.button_edt);
+        this.btn_rappels = findViewById(R.id.button_rappels);
         btn_param = findViewById(R.id.button_param);
-
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent CalendarJourActivity = new Intent(getApplicationContext(), com.example.appmobilev2.CalendarJour.class);
+                Intent CalendarJourActivity = new Intent(getApplicationContext(), CalendarJour.class);
                 startActivity(CalendarJourActivity);
             }
         });
         btn_param.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ParametresActivity= new Intent(getApplicationContext(), com.example.appmobilev2.SettingsActivity.class);
+                Intent ParametresActivity= new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivity(ParametresActivity);
+            }
+        });
+        btn_rappels.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent RappelsActivity= new Intent(getApplicationContext(), Rappels_Affichage.class);
+                startActivity(RappelsActivity);
             }
         });
     }

@@ -1,32 +1,20 @@
-package com.example.appmobilev2;
+package com.example.appmobilev2.QRCode;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.appmobilev2.Classes.CalendarJour;
+import com.example.appmobilev2.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.List;
-
-import biweekly.Biweekly;
-import biweekly.ICalendar;
-import biweekly.component.VEvent;
 
 public class QrCodeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -74,7 +62,7 @@ public class QrCodeActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         try {
-                            Intent CalendarJourActivity = new Intent(getApplicationContext(), com.example.appmobilev2.CalendarJour.class);
+                            Intent CalendarJourActivity = new Intent(getApplicationContext(), CalendarJour.class);
                             CalendarJourActivity.putExtra("LienEDT", results.getContents());
                             startActivity(CalendarJourActivity);
                             finish();

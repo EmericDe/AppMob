@@ -1,4 +1,4 @@
-package com.example.appmobilev2;
+package com.example.appmobilev2.Parametres;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,11 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+
+import com.example.appmobilev2.Classes.CalendarJour;
+import com.example.appmobilev2.DataBase.DataBaseManager;
+import com.example.appmobilev2.QRCode.QrCodeActivity;
+import com.example.appmobilev2.R;
 
 public class SettingsActivity extends AppCompatActivity {
 

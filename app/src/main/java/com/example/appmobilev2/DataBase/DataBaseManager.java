@@ -1,9 +1,12 @@
-package com.example.appmobilev2;
+package com.example.appmobilev2.DataBase;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.appmobilev2.Classes.Cours;
+import com.example.appmobilev2.Rappels.Rappel;
 
 import java.util.ArrayList;
 
@@ -44,7 +47,6 @@ public class DataBaseManager extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
     public void insertCours(String prof, String nom, String loc, String heureDeb, String heureFin, String date) {
@@ -67,8 +69,10 @@ public class DataBaseManager extends SQLiteOpenHelper {
     public void delete() {
         String strSql = "DELETE FROM T_Cours";
         String strSql2 = "DELETE FROM T_Lien";
+        String strSql3 = "DELETE FROM T_Rappel";
         this.getWritableDatabase().execSQL(strSql);
         this.getWritableDatabase().execSQL(strSql2);
+        this.getWritableDatabase().execSQL(strSql3);
     }
 
     public ArrayList<Cours> getCours() {
@@ -89,7 +93,7 @@ public class DataBaseManager extends SQLiteOpenHelper {
 
     public ArrayList<Rappel> getRappels() {
         ArrayList<Rappel> rappels = new ArrayList<>();
-        String strSql = "SELECT * FROM T_Cours";
+        String strSql = "SELECT * FROM T_Rappel";
         Cursor cursor = this.getReadableDatabase().rawQuery(strSql, null);
         cursor.moveToFirst();
         while(! cursor.isAfterLast()) {
@@ -101,7 +105,10 @@ public class DataBaseManager extends SQLiteOpenHelper {
 
         return rappels;
     }
-
+     public void SuppRappel(String titre){
+        String strSQL = "DELETE FROM T_Rappel WHERE Titre ='" + titre + "'";
+         this.getWritableDatabase().execSQL(strSQL);
+     }
     public boolean isEmpty() {
         String strSql = "SELECT * FROM T_Lien";
         Cursor cursor = this.getReadableDatabase().rawQuery(strSql, null);

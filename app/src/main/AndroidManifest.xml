@@ -15,13 +15,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppMobileV2"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Rappels.AjoutRappel"
+            android:label="Ajouter un rappel"
+            android:parentActivityName=".Rappels.Rappels_Affichage"></activity>
+
+        <activity android:name=".Rappels.Rappels_Affichage"
+            android:label="Listes des rappels"
+            android:parentActivityName=".MainActivity"></activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".Parametres.SettingsActivity"
             android:parentActivityName=".MainActivity"
             android:label="Paramètres"></activity>
-        <activity android:name=".QrCodeActivity"
+        <activity android:name=".QRCode.QrCodeActivity"
             android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".CalendarJour"
+        <activity android:name=".Classes.CalendarJour"
             android:parentActivityName=".MainActivity">
         </activity>
         <activity android:name=".MainActivity">
@@ -31,7 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Capture"
+        <activity android:name=".QRCode.Capture"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
             android:windowSoftInputMode="stateAlwaysHidden">

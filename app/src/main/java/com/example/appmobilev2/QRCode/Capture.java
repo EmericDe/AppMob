@@ -1,4 +1,4 @@
-package com.example.appmobilev2;
+package com.example.appmobilev2.QRCode;
 
 import com.journeyapps.barcodescanner.CaptureActivity;
 

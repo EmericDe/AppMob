@@ -1,4 +1,4 @@
-package com.example.appmobilev2;
+package com.example.appmobilev2.Classes;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.appmobilev2.DataBase.DataBaseManager;
+import com.example.appmobilev2.QRCode.QrCodeActivity;
+import com.example.appmobilev2.R;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -34,8 +38,8 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
     private int datecount = 0;
     private TextView DateView;
     private ListView listView;
-    private com.example.appmobilev2.CoursAdapter mAdapter;
-    private ArrayList<com.example.appmobilev2.Cours> coursList;
+    private CoursAdapter mAdapter;
+    private ArrayList<Cours> coursList;
     private List<VEvent> event;
     private String lienIntent;
     private String result = "";
@@ -74,7 +78,7 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
         coursList = new ArrayList<>();
         if(!db.isEmpty())
             createList();
-        mAdapter = new com.example.appmobilev2.CoursAdapter(this, getCoursDate(coursList, getSelectedDate(datecount)));
+        mAdapter = new CoursAdapter(this, getCoursDate(coursList, getSelectedDate(datecount)));
         listView.setAdapter(mAdapter);
         db.close();
 
@@ -127,12 +131,12 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
         switch(v.getId()){
             case R.id.LeftArrow:
                 datecount --;
-                mAdapter = new com.example.appmobilev2.CoursAdapter(this, getCoursDate(coursList, getSelectedDate(datecount)));
+                mAdapter = new CoursAdapter(this, getCoursDate(coursList, getSelectedDate(datecount)));
                 listView.setAdapter(mAdapter);
                 break;
             case R.id.RightArrow:
                 datecount ++;
-                mAdapter = new com.example.appmobilev2.CoursAdapter(this, getCoursDate(coursList, getSelectedDate(datecount)));
+                mAdapter = new CoursAdapter(this, getCoursDate(coursList, getSelectedDate(datecount)));
                 listView.setAdapter(mAdapter);
                 break;
         }
@@ -190,7 +194,7 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
     }
 
     public void createList() {
-            //coursList.add(new com.example.appmobilev2.Cours("IDK",event.get(i).getSummary().getValue(),event.get(i).getLocation().getValue(),createHeureDebut(i),createHeureFin(i),createDate(i)));
+            //coursList.add(new com.example.appmobilev2.Classes.Cours("IDK",event.get(i).getSummary().getValue(),event.get(i).getLocation().getValue(),createHeureDebut(i),createHeureFin(i),createDate(i)));
             coursList = db.getCours();
     }
 
@@ -200,8 +204,8 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public ArrayList<com.example.appmobilev2.Cours> getCoursDate(ArrayList<com.example.appmobilev2.Cours> list, String SelectedDate){
-        ArrayList<com.example.appmobilev2.Cours> listeCoursDay = new ArrayList<>();
+    public ArrayList<Cours> getCoursDate(ArrayList<Cours> list, String SelectedDate){
+        ArrayList<Cours> listeCoursDay = new ArrayList<>();
         for(int i = 0; i < list.size(); i++) {
             if (SelectedDate.contentEquals(list.get(i).getDateCours())) {
                 listeCoursDay.add(list.get(i));
