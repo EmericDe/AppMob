@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DataBaseManager extends SQLiteOpenHelper {
 
@@ -32,8 +31,15 @@ public class DataBaseManager extends SQLiteOpenHelper {
                 + "   idLien integer primary key autoincrement,"
                 + "   lien String"
                 + ")";
+        String strSQL3= "CREATE TABLE T_Rappel ("
+                + "   idRappel integer primary key autoincrement,"
+                + "   Titre String,"
+                + "   Description String,"
+                + "   Date String"
+                + ")";
         db.execSQL(strSQL);
         db.execSQL(strSQL2);
+        db.execSQL(strSQL3);
     }
 
     @Override
@@ -50,6 +56,11 @@ public class DataBaseManager extends SQLiteOpenHelper {
 
     public void insertLien(String lien) {
         String strSql = "insert into T_Lien (lien) VALUES ('" + lien + "')";
+        this.getWritableDatabase().execSQL(strSql);
+    }
+
+    public void insertRappel(String titre, String description, String date) {
+        String strSql = "insert into T_Rappel (Titre, Description, Date) VALUES ('" + titre + "','" + description + "','" + date + "')";
         this.getWritableDatabase().execSQL(strSql);
     }
 
@@ -74,6 +85,21 @@ public class DataBaseManager extends SQLiteOpenHelper {
         cursor.close();
 
         return cours;
+    }
+
+    public ArrayList<Rappel> getRappels() {
+        ArrayList<Rappel> rappels = new ArrayList<>();
+        String strSql = "SELECT * FROM T_Cours";
+        Cursor cursor = this.getReadableDatabase().rawQuery(strSql, null);
+        cursor.moveToFirst();
+        while(! cursor.isAfterLast()) {
+            Rappel rappel = new Rappel(cursor.getString(1), cursor.getString(2), cursor.getString(3));
+            rappels.add(rappel);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return rappels;
     }
 
     public boolean isEmpty() {
