@@ -28,7 +28,7 @@ import biweekly.Biweekly;
 import biweekly.ICalendar;
 import biweekly.component.VEvent;
 
-public class EdtActivity extends AppCompatActivity implements View.OnClickListener {
+public class QrCodeActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

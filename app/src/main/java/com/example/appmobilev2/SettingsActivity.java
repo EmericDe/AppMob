@@ -1,17 +1,12 @@
 package com.example.appmobilev2;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.EditText;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -46,7 +41,7 @@ public class SettingsActivity extends AppCompatActivity {
             scanQRCode.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    startActivity(new Intent(preference.getContext(), EdtActivity.class));
+                    startActivity(new Intent(preference.getContext(), QrCodeActivity.class));
                     return true;
                 }
             });

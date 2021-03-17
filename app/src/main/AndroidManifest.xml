@@ -19,7 +19,7 @@
             android:name=".SettingsActivity"
             android:parentActivityName=".MainActivity"
             android:label="Paramètres"></activity>
-        <activity android:name=".EdtActivity"
+        <activity android:name=".QrCodeActivity"
             android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".CalendarJour"
             android:parentActivityName=".MainActivity">

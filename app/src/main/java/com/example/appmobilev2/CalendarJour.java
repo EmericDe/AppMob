@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,7 +19,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -84,7 +81,7 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
         btn_qr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent edtActivity = new Intent(getApplicationContext(), com.example.appmobilev2.EdtActivity.class);
+                Intent edtActivity = new Intent(getApplicationContext(), QrCodeActivity.class);
                 startActivity(edtActivity);
                 finish();
             }
