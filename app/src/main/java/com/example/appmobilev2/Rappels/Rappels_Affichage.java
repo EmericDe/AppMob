@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,9 +17,17 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.example.appmobilev2.Classes.CalendarJour;
+import com.example.appmobilev2.Classes.Cours;
 import com.example.appmobilev2.DataBase.DataBaseManager;
 import com.example.appmobilev2.R;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class Rappels_Affichage extends AppCompatActivity {
@@ -35,6 +44,7 @@ public class Rappels_Affichage extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
         tableLayout = findViewById(R.id.Affichage_Rappel);
         btn_add = findViewById(R.id.btn_add);
         btn_add.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +57,21 @@ public class Rappels_Affichage extends AppCompatActivity {
         });
         db = new DataBaseManager(this);
         ListeRappels = db.getRappels();
+        Collections.sort(ListeRappels, new Comparator<Rappel>() {
+            @Override
+            public int compare(Rappel o1, Rappel o2) {
+                int i = 0;
+                DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    Date datePremier  = format.parse(o1.getDate());
+                    Date dateDeuxieme = format.parse(o2.getDate());
+                    i = datePremier.compareTo(dateDeuxieme);
+                } catch(ParseException e){
+                }
+                return i;
+            }
+        });
+
         for (int i = 0; i < ListeRappels.size(); ++i) {
                 // Paramètres de design des lignes du layout
                 TableRow row = new TableRow(this);
@@ -73,6 +98,7 @@ public class Rappels_Affichage extends AppCompatActivity {
                 row.addView(textTitre);
                 row.addView(textDate);
                 tableLayout.addView(row);
+
 
                 int index = i;
                 row.setOnClickListener(new View.OnClickListener() {
