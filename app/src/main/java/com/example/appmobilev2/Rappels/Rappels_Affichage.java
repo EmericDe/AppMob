@@ -55,6 +55,7 @@ public class Rappels_Affichage extends AppCompatActivity {
                 finish();
             }
         });
+
         db = new DataBaseManager(this);
         ListeRappels = db.getRappels();
         Collections.sort(ListeRappels, new Comparator<Rappel>() {

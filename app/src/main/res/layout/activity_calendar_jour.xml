@@ -26,6 +26,7 @@
             android:pivotX="12"
             android:scaleX="-1"
             android:background="@drawable/ic_baseline_arrow_right_alt_24"
+            android:backgroundTint="@color/white"
             android:gravity="left"
             android:padding="25dp" />
 
@@ -35,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/ic_baseline_qr_code_scanner_24"
+            android:backgroundTint="@color/white"
             android:gravity="right"
             android:padding="20dp" />
     </LinearLayout>
@@ -60,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="08/03/2021"
+            android:text=""
             android:textSize="25dp" />
 
         <ImageView

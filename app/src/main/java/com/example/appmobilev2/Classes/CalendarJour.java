@@ -60,7 +60,7 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
 
         LeftArrow.setOnClickListener(this::onClick);
         RightArrow.setOnClickListener(this::onClick);
-        Intent intent = getIntent();
+         Intent intent = getIntent();
         if(intent != null && intent.hasExtra("LienEDT")) {
             db.delete();
             lienIntent = intent.getStringExtra("LienEDT");
@@ -142,6 +142,11 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * Récupération et modification de la date choisie grâce aux flèches dans le layout
+     * @param count int : à 0 correspond à la date d'aujourd'hui, quand négatif aux jours passées et quand positif aux jours à venir
+     * @return la date du jour choisie grâce au count
+     */
     public String getSelectedDate(int count){
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_YEAR, count);
@@ -152,6 +157,12 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
         return demainDate;
     }
 
+    /**
+     *  Les données récupérées du fichier ICS ne sont pas totalement ordonées correctement
+     *  Donc nous faisons en sorte de récupérer un String correspondant à la bonne date sous le format (xx/xx/xxxx)
+     * @param i l'indice correspond au jour choisi
+     * @return jour le jour sélectionnée quand on clique sur les flèches
+     */
     public String createDate(int i) {
         String jour ="", mois ="", annee = "";
             if(event.get(i).getDateStart().getValue().getDate() < 10) {
@@ -167,6 +178,13 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
             return jour +"/" + mois + "/" + annee;
     }
 
+    /**
+     * Les données récupérées du fichier ICS ne sont pas totalement ordonées correctement
+     *  Donc nous faisons en sorte de récupérer un String correspondant à la
+     *  bonne heure sous le format xx:xx
+     * @param i l'indice du début d'un cours dans la journée
+     * @return un string "heure" le jour sélectionnée quand on clique sur les flèches
+     */
     public String createHeureDebut(int i) {
         String heure ="", minutes ="";
         if(event.get(i).getDateStart().getValue().getHours() < 10) {
@@ -180,6 +198,13 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
         return heure + ":" + minutes;
     }
 
+    /**
+     * Les données récupérées du fichier ICS ne sont pas totalement ordonées correctement
+     *  Donc nous faisons en sorte de récupérer un String correspondant à la
+     *  bonne heure sous le format xx:xx
+     * @param i l'indice de la fin d'heure d'un cours dans la journée
+     * @return un string "heure" le jour sélectionnée quand on clique sur les flèches
+     */
     public String createHeureFin(int i) {
         String heure ="", minutes ="";
         if(event.get(i).getDateEnd().getValue().getHours() < 10) {
@@ -193,17 +218,29 @@ public class CalendarJour extends AppCompatActivity implements View.OnClickListe
         return heure + ":" + minutes;
     }
 
+    /**
+     * Récupération de la liste des cours stockés dans la base de données
+     */
     public void createList() {
             //coursList.add(new com.example.appmobilev2.Classes.Cours("IDK",event.get(i).getSummary().getValue(),event.get(i).getLocation().getValue(),createHeureDebut(i),createHeureFin(i),createDate(i)));
             coursList = db.getCours();
     }
 
+    /**
+     *  Insertion d'un cours dans la base de données
+     */
     public void createBD() {
         for(int i = 0; i < event.size();i++) {
             db.insertCours("IDK",event.get(i).getSummary().getValue(),event.get(i).getLocation().getValue(),createHeureDebut(i),createHeureFin(i),createDate(i));
         }
     }
 
+    /**
+     * Récupération des cours liées à la journée sélectionnée
+     * @param list la liste des cours présents dans la base de données
+     * @param SelectedDate La date choisie grâce aux flèches
+     * @return listeCoursDay -> la liste des cours du jour choisi
+     */
     public ArrayList<Cours> getCoursDate(ArrayList<Cours> list, String SelectedDate){
         ArrayList<Cours> listeCoursDay = new ArrayList<>();
         for(int i = 0; i < list.size(); i++) {

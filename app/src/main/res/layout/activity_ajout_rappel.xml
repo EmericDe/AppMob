@@ -57,7 +57,7 @@
             android:inputType="text"
             android:textColorHint="@color/black"
             android:textColor="@color/black"
-            android:hint="Date du rappel (xx/xx/xx)"
+            android:hint="Date du rappel (xx/xx/xxxx)"
             android:autofillHints="" />
     </LinearLayout>
 
